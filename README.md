@@ -85,5 +85,15 @@ Login.php|Handle user login
 SearchColors.php|Search for colors from a query
 AddColor.php|Add a color to the database
 
+## AI Assistance Disclosure
+
+This project was developed with assistance from generative AI tools:
+
+- **Tool**: ChatGPT, GPT-5.6 Sol (OpenAI, chatgpt.com)
+- **Dates**: 27 August to 27 September 2026
+- **Scope**: Project setup, debugging, advising on best practices
+
+All AI-generated code was reviewed, tested, and modified to meet assignment requirements. Final implementation reflects my understanding of the concepts.
+
 ## License
 This project is licensed under the MIT License. See `LICENSE.md` for details.
