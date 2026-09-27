@@ -1,0 +1,89 @@
+# COLORS Lab
+
+**Summary:** A LAMP stack application for managing colors. Supports user authentication, as well as adding and searching in the colors database.
+
+## Deployment
+**Live link:** [http://jacoblamp.me](http://jacoblamp.me)
+
+## Technology Used
+- Linux
+- Apache
+- MySQL
+- PHP
+- HTML, CSS, JavaScript
+
+## Project Structure
+```sh
+.
+├── api
+│   ├── AddColor.php
+│   ├── Login.php
+│   └── SearchColors.php
+└── public
+    ├── color.html
+    ├── css
+    │   └── styles.css
+    ├── images
+    │   └── background.png
+    ├── index.html
+    └── js
+        ├── code.js
+        └── md5.js
+```
+
+## Setup Instructions
+
+### Create Database
+
+```sh
+create database COP4331; 
+use COP4331;
+```
+
+### Create Colors Table
+```sh
+CREATE TABLE `COP4331`.`Colors`
+(
+`ID` INT NOT NULL AUTO_INCREMENT ,
+`Name` VARCHAR(50) NOT NULL DEFAULT '' ,
+`UserID` INT NOT NULL DEFAULT '0' ,
+PRIMARY KEY (`ID`)
+) ENGINE = InnoDB;
+```
+
+### Create Users table
+
+```sh
+CREATE TABLE `COP4331`.`Users`
+(
+`ID` INT NOT NULL AUTO_INCREMENT ,
+`FirstName` VARCHAR(50) NOT NULL DEFAULT '' ,
+`LastName` VARCHAR(50) NOT NULL DEFAULT '' ,
+`Login` VARCHAR(50) NOT NULL DEFAULT '' ,
+`Password` VARCHAR(50) NOT NULL DEFAULT '' ,
+PRIMARY KEY (`ID`)
+) ENGINE = InnoDB;
+```
+
+### Create Initial User
+```sh
+USE COP4331;
+insert into Users (FirstName,LastName,Login,Password) VALUES ('Bobby','Tables','bables','123');
+```
+
+### Create Database User and Grant Permissions
+```sh
+Use COP4331;
+create user 'TheBeast' identified by 'WeLoveCOP4331';
+grant all privileges on COP4331.* to 'TheBeast'@'%';
+```
+
+## API
+Endpoint|Purpose
+-|-
+Login.php|Handle user login
+SearchColors.php|Search for colors from a query
+AddColor.php|Add a color to the database
+
+## License
+This project is licensed under the MIT License. See `LICENSE.md` for details.
