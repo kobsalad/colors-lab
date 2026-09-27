@@ -21,7 +21,7 @@ function doLogin()
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
-	let url = urlBase + '/LAMPAPI/Login.' + extension;
+	let url = urlBase + '/api/Login.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -116,7 +116,7 @@ function addColor()
 	let tmp = {color:newColor,userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/LAMPAPI/AddColor.' + extension;
+	let url = urlBase + '/api/AddColor.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -149,7 +149,7 @@ function searchColor()
 	let tmp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/LAMPAPI/SearchColors.' + extension;
+	let url = urlBase + '/api/SearchColors.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

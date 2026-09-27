@@ -78,6 +78,9 @@ create user 'TheBeast' identified by 'WeLoveCOP4331';
 grant all privileges on COP4331.* to 'TheBeast'@'%';
 ```
 
+### Update base URL
+Change the constant `urlBase` variable in `code.js` to match your hosted location.
+
 ## API
 Endpoint|Purpose
 -|-
