@@ -1,0 +1,53 @@
+@startuml
+
+skinparam Dpi 600
+skinparam classAttributeIconSize 0
+
+class Frontend {
+    +doLogin()
+    +addColor()
+    +searchColor()
+    +doLogout()
+}
+
+class "Login.php" as LoginAPI {
+    +getRequestInfo()
+    +sendResultInfoAsJson(obj)
+    +returnWithError(err)
+    +returnWithInfo(firstName, lastName, id)
+}
+
+class "AddColor.php" as AddColorAPI {
+    +getRequestInfo()
+    +sendResultInfoAsJson(obj)
+    +returnWithError(err)
+}
+
+class "SearchColors.php" as SearchColorsAPI {
+    +getRequestInfo()
+    +sendResultInfoAsJson(obj)
+    +returnWithError(err)
+    +returnWithInfo(searchResults)
+}
+
+class Users <<table>> {
+    ID
+    FirstName
+    LastName
+    Login
+    Password
+}
+
+class Colors <<table>> {
+    ID
+    Name
+    UserID
+}
+
+Frontend --> LoginAPI : sends login, password
+Frontend --> AddColorAPI : sends color, userId
+Frontend --> SearchColorsAPI : sends search, userId
+LoginAPI --> Users : checks Login, Password
+AddColorAPI --> Colors : inserts Name, UserID
+SearchColorsAPI --> Colors : matches Name, filters UserID
+@enduml

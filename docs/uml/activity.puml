@@ -1,0 +1,32 @@
+@startuml
+
+skinparam Dpi 300
+
+start
+
+:Enter login credentials;
+:Send login request;
+
+if (Login succeeds?) then (yes)
+    :Open color page;
+
+    while (Keep using the app?) is (yes)
+        if (Add a color?) then (yes)
+            :Enter color;
+            :Send request to AddColor.php;
+            :Show add result;
+        else (search)
+            :Enter search query;
+            :Send request to SearchColors.php;
+            :Display returned colors;
+        endif
+    endwhile (no)
+
+    :Log out;
+else (no)
+    :Show login error;
+endif
+
+stop
+
+@enduml

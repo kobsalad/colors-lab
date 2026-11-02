@@ -1,0 +1,20 @@
+@startuml
+
+skinparam Dpi 300
+left to right direction
+
+actor User
+
+rectangle "Color app" {
+    usecase "Log in" as Login
+    usecase "Add a color" as AddColor
+    usecase "Search colors" as SearchColors
+    usecase "Log out" as Logout
+}
+
+User --> Login
+User --> AddColor
+User --> SearchColors
+User --> Logout
+
+@enduml
