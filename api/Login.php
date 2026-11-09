@@ -1,13 +1,24 @@
 
 <?php
 
+	require_once __DIR__ . '/Database.php';
+
 	$inData = getRequestInfo();
 	
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+	try
+	{
+		$conn = connectToDatabase();
+	}
+	catch (RuntimeException $error)
+	{
+		returnWithError($error->getMessage());
+		exit;
+	}
+
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );

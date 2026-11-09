@@ -73,10 +73,15 @@ insert into Users (FirstName,LastName,Login,Password) VALUES ('Bobby','Tables','
 
 ### Create Database User and Grant Permissions
 ```sh
-Use COP4331;
-create user 'TheBeast' identified by 'WeLoveCOP4331';
-grant all privileges on COP4331.* to 'TheBeast'@'%';
+USE COP4331;
+CREATE USER 'your_database_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON COP4331.* TO 'your_database_user'@'localhost';
 ```
+
+Copy `api/.env.example` to `api/.env` and set `DB_HOST`, `DB_USER`,
+`DB_PASSWORD`, and `DB_NAME` to match your database. The local `.env` is ignored
+by Git. In deployment, set these as environment variables in the web server
+instead of storing them in a file.
 
 ### Update base URL
 Change the constant `urlBase` variable in `code.js` to match your hosted location.
