@@ -1,3 +1,5 @@
+import { md5 } from './md5';
+
 const urlBase = 'http://jacoblamp.me';
 const extension = 'php';
 
@@ -5,20 +7,18 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doLogin()
-{
+window.doLogin = function doLogin() {
 	userId = 0;
 	firstName = "";
 	lastName = "";
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	let tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/api/Login.' + extension;
@@ -44,7 +44,7 @@ function doLogin()
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
-				saveCookie();
+				window.saveCookie();
 	
 				window.location.href = "color.html";
 			}
@@ -58,16 +58,14 @@ function doLogin()
 
 }
 
-function saveCookie()
-{
+window.saveCookie = function saveCookie() {
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
-function readCookie()
-{
+window.readCookie = function readCookie() {
 	userId = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
@@ -99,8 +97,7 @@ function readCookie()
 	}
 }
 
-function doLogout()
-{
+window.doLogout = function doLogout() {
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -108,12 +105,11 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addColor()
-{
+window.addColor = function addColor() {
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {color:newColor,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/api/AddColor.' + extension;
@@ -139,8 +135,7 @@ function addColor()
 	
 }
 
-function searchColor()
-{
+window.searchColor = function searchColor() {
 	let srch = document.getElementById("searchText").value;
 	document.getElementById("colorSearchResult").innerHTML = "";
 	
@@ -181,5 +176,4 @@ function searchColor()
 	{
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
-	
 }
