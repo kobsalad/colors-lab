@@ -1,0 +1,36 @@
+{
+  "name": "colors-lab",
+  "version": "1.0.0",
+  "description": "**Summary:** A LAMP stack application for managing colors. Supports user authentication, as well as adding and searching in the colors database.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint:html": "htmlhint \"**/*.html\"",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:js": "eslint \"**/*.js\"",
+    "lint:fix:css": "stylelint \"**/*.css\" --fix",
+    "lint:fix:js": "eslint \"**/*.js\" --fix",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:fix": "npm run lint:fix:css && npm run lint:fix:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobsalad/colors-lab.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kobsalad/colors-lab/issues"
+  },
+  "homepage": "https://github.com/kobsalad/colors-lab#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "htmlhint": "^1.9.2",
+    "stylelint": "^18.0.0",
+    "stylelint-config-standard": "^41.0.0"
+  }
+}
