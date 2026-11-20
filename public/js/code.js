@@ -106,6 +106,11 @@ window.doLogout = function doLogout() {
 function sanitizeColor(colorStr) {
 	return colorStr.trim();
 }
+
+if (typeof module !== "undefined" && module.exports) {
+	module.exports = { sanitizeColor };
+}
+
 window.addColor = function addColor() {
 	let newColor = sanitizeColor(document.getElementById("color-text").value);
 	document.getElementById("color-add-result").innerHTML = "";
@@ -164,11 +169,11 @@ window.searchColor = function searchColor() {
 					colorList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						colorList += "\n";
 					}
 				}
 				
-				document.getElementById("color-list").innerHTML = colorList;
+				document.getElementById("color-list").textContent = colorList;
 			}
 		};
 		xhr.send(jsonPayload);

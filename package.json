@@ -13,7 +13,8 @@
     "lint:fix:css": "stylelint \"**/*.css\" --fix",
     "lint:fix:js": "eslint \"**/*.js\" --fix",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
-    "lint:fix": "npm run lint:fix:css && npm run lint:fix:js"
+    "lint:fix": "npm run lint:fix:css && npm run lint:fix:js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
     "htmlhint": "^1.9.2",
+    "jest": "^30.5.2",
     "stylelint": "^18.0.0",
     "stylelint-config-standard": "^41.0.0"
   }
