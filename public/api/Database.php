@@ -3,7 +3,7 @@
 function connectToDatabase(): mysqli
 {
 	$localSettings = [];
-	$envFile = __DIR__ . '/.env';
+	$envFile = dirname(__DIR__, 2) . '/.env';
 
 	if (is_file($envFile))
 	{
