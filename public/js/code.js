@@ -1,5 +1,3 @@
-import { md5 } from './md5';
-
 const urlBase = 'http://jacoblamp.me';
 const extension = 'php';
 
@@ -14,7 +12,7 @@ window.doLogin = function doLogin() {
 	
 	let login = document.getElementById("login-name").value;
 	let password = document.getElementById("login-password").value;
-	var hash = md5( password );
+	var hash = window.md5( password );
 	
 	document.getElementById("login-result").innerHTML = "";
 
@@ -108,8 +106,6 @@ window.doLogout = function doLogout() {
 function sanitizeColor(colorStr) {
 	return colorStr.trim();
 }
-module.exports = sanitizeColor;
-
 window.addColor = function addColor() {
 	let newColor = sanitizeColor(document.getElementById("color-text").value);
 	document.getElementById("color-add-result").innerHTML = "";
