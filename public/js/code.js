@@ -12,11 +12,11 @@ window.doLogin = function doLogin() {
 	firstName = "";
 	lastName = "";
 	
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
+	let login = document.getElementById("login-name").value;
+	let password = document.getElementById("login-password").value;
 	var hash = md5( password );
 	
-	document.getElementById("loginResult").innerHTML = "";
+	document.getElementById("login-result").innerHTML = "";
 
 	let tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
@@ -37,7 +37,7 @@ window.doLogin = function doLogin() {
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("login-result").innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -53,7 +53,7 @@ window.doLogin = function doLogin() {
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("login-result").innerHTML = err.message;
 	}
 
 }
@@ -93,7 +93,7 @@ window.readCookie = function readCookie() {
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+//		document.getElementById("user-name").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -105,9 +105,14 @@ window.doLogout = function doLogout() {
 	window.location.href = "index.html";
 }
 
+function sanitizeColor(colorStr) {
+	return colorStr.trim();
+}
+module.exports = sanitizeColor;
+
 window.addColor = function addColor() {
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	let newColor = sanitizeColor(document.getElementById("color-text").value);
+	document.getElementById("color-add-result").innerHTML = "";
 
 	let tmp = {color:newColor,userId};
 	let jsonPayload = JSON.stringify( tmp );
@@ -123,21 +128,21 @@ window.addColor = function addColor() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("color-add-result").innerHTML = "Color has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("color-add-result").innerHTML = err.message;
 	}
 	
 }
 
 window.searchColor = function searchColor() {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	let srch = document.getElementById("search-text").value;
+	document.getElementById("color-search-result").innerHTML = "";
 	
 	let colorList = "";
 
@@ -155,7 +160,7 @@ window.searchColor = function searchColor() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("color-search-result").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
 				for( let i=0; i<(jsonObject.results?.length ?? 0); i++ )
@@ -167,13 +172,13 @@ window.searchColor = function searchColor() {
 					}
 				}
 				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				document.getElementById("color-list").textContent = colorList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("color-search-result").innerHTML = err.message;
 	}
 }
