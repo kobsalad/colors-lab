@@ -4,7 +4,7 @@
 
 	$inData = getRequestInfo();
 	
-	$searchResults = "";
+	$searchResults = [];
 	$searchCount = 0;
 
 	try
@@ -32,12 +32,8 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+			$searchResults[] = $row["Name"];
 		}
 		
 		if( $searchCount == 0 )
@@ -60,19 +56,27 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		header('Content-type: application/json');
-		echo $obj;
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($obj);
 	}
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = [
+			'id' => 0,
+			'firstName' => '',
+			'lastName' => '',
+			'error' => $err
+		];
 		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $searchResults )
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		$retValue = [
+			'results' => $searchResults,
+			'error' => ''
+		];
 		sendResultInfoAsJson( $retValue );
 	}
 	
