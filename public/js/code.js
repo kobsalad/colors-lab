@@ -1,4 +1,4 @@
-const urlBase = 'http://jacoblamp.me';
+const urlBase = window.location.origin;
 const extension = 'php';
 
 let userId = 0;
