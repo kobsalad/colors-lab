@@ -168,7 +168,7 @@ window.searchColor = function searchColor() {
 					}
 				}
 				
-				document.getElementById("color-list").textContent = colorList;
+				document.getElementById("color-list").innerHTML = colorList;
 			}
 		};
 		xhr.send(jsonPayload);
